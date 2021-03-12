@@ -5,8 +5,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["Sources/WahooFitToGarmin.csproj", "Sources/"]
-RUN dotnet restore "Sources/WahooFitToGarmin.csproj"
+COPY ["WahooFitToGarmin/WahooFitToGarmin.csproj", "Sources/"]
+RUN dotnet restore "WahooFitToGarmin/WahooFitToGarmin.csproj"
 COPY . .
 WORKDIR "/src/Sources"
 RUN dotnet build "WahooFitToGarmin.csproj" -c Release -o /app/build

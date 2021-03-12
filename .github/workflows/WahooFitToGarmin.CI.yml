@@ -24,6 +24,7 @@ jobs:
 
     - name: Build
       run: dotnet build --no-restore --configuration Release  
+      workspace: './Sources'
 
     - name: Upload build results
       uses: actions/upload-artifact@v2

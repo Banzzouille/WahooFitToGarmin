@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pTJ/28HfG8TlZHudwg/z5vHJLZExExMFJazPS++TpttsWck1XV8SuzwACCmAFnAmG6AaJxgrxpYtMzAiS0wR2Q==",
+  "dgSpecHash": "FfMXgVAZPJguLrIVqsSZDaUdK52rG29hHGEXVvrFqn3QAdYQ1ddnaIt9VzaLkyYpZAPrYntF8nqj4Wk7+Zdnhg==",
   "success": true,
-  "projectFilePath": "C:\\_SC\\WahooFitToGarmin\\Sources\\WahooFitToGarmin.csproj",
+  "projectFilePath": "C:\\_SC\\WahooFitToGarmin\\WahooFitToGarmin\\WahooFitToGarmin.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Florian-Adm\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Florian-Adm\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

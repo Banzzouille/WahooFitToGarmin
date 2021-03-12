@@ -200,11 +200,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\_SC\\WahooFitToGarmin\\Sources\\WahooFitToGarmin.csproj",
+      "projectUniqueName": "C:\\_SC\\WahooFitToGarmin\\WahooFitToGarmin\\WahooFitToGarmin.csproj",
       "projectName": "WahooFitToGarmin",
-      "projectPath": "C:\\_SC\\WahooFitToGarmin\\Sources\\WahooFitToGarmin.csproj",
+      "projectPath": "C:\\_SC\\WahooFitToGarmin\\WahooFitToGarmin\\WahooFitToGarmin.csproj",
       "packagesPath": "C:\\Users\\Florian-Adm\\.nuget\\packages\\",
-      "outputPath": "C:\\_SC\\WahooFitToGarmin\\Sources\\obj\\",
+      "outputPath": "C:\\_SC\\WahooFitToGarmin\\WahooFitToGarmin\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

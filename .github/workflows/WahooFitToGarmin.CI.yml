@@ -23,14 +23,13 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release  
-      workdir: './Sources'
+      run: dotnet build --no-restore --configuration Release
 
     - name: Upload build results
       uses: actions/upload-artifact@v2
       with:
         name: 'WahooFitToGarmin'
-        path: ${{ github.workspace }}/Sources/bin/Release/net5.0/
+        path: ${{ github.workspace }}/WahooFitToGarmin/bin/Release/net5.0/
     
     - name: Publish      
       run: dotnet publish -c Release

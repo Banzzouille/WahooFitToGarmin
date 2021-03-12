@@ -32,4 +32,4 @@
 
 
 
-        docker run -ti --rm -p 8080:80 --name='WahooFitToGarmin' wahoofittogarmin
+        docker run -ti --rm -p 8080:80 --name='WahooFitToGarmin' banzzouille/wahoo-fit-to-garmin

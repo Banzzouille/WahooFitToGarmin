@@ -45,6 +45,6 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: ./Sources/Dockerfile
+        file: ./WahooFitToGarmin/Dockerfile
         push: true
         tags: banzzouille/wahoo-fit-to-garmin

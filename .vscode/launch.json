@@ -33,7 +33,7 @@
             "request": "launch",
             "preLaunchTask": "docker-run: debug",
             "netCore": {
-                "appProject": "${workspaceFolder}/Sources/WahooFitToGarmin.csproj"
+                "appProject": "${workspaceFolder}/WahooFitToGarmin/WahooFitToGarmin.csproj"
             }
         }
     ]

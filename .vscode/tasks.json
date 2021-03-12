@@ -52,7 +52,7 @@
                 "pull": true
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/Sources/WahooFitToGarmin.csproj"
+                "appProject": "${workspaceFolder}/WahooFitToGarmin/WahooFitToGarmin.csproj"
             }
         },
         {
@@ -68,7 +68,7 @@
                 "pull": true
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/Sources/WahooFitToGarmin.csproj"
+                "appProject": "${workspaceFolder}/WahooFitToGarmin/WahooFitToGarmin.csproj"
             }
         },
         {
@@ -79,7 +79,7 @@
             ],
             "dockerRun": {},
             "netCore": {
-                "appProject": "${workspaceFolder}/Sources/WahooFitToGarmin.csproj",
+                "appProject": "${workspaceFolder}/WahooFitToGarmin/WahooFitToGarmin.csproj",
                 "enableDebugging": true
             }
         },
@@ -91,7 +91,7 @@
             ],
             "dockerRun": {},
             "netCore": {
-                "appProject": "${workspaceFolder}/Sources/WahooFitToGarmin.csproj"
+                "appProject": "${workspaceFolder}/WahooFitToGarmin/WahooFitToGarmin.csproj"
             }
         }
     ]

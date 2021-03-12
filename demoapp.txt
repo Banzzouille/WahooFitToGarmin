@@ -1,34 +1,3 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Dropbox.Api;
-using Microsoft.Extensions.Logging;
-
-namespace WahooFitToGarmin.Controllers
-{
-    [ApiController]
-    [Route("[controller]")]
-    public class ConvertController : ControllerBase
-    {
-        private readonly ILogger<ConvertController> _logger;
-
-        public ConvertController(ILogger<ConvertController> logger)
-        {
-            _logger = logger;
-        }
-
-        [HttpGet]
-        public string Get()
-        {
-            return "Hello world !";
-        }
-
-        [HttpGet("NewFile")]
-        public string NewFile()
-        {
-            return "NewFile !";
-        }
 
         static async Task Run(DropboxClient dbx)
         {
@@ -61,5 +30,6 @@ namespace WahooFitToGarmin.Controllers
             return currentClient;
         }
 
-    }
-}
+
+
+        docker run -ti --rm -p 8080:80 --name='WahooFitToGarmin' wahoofittogarmin

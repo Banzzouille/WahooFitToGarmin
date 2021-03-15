@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using WahooFitToGarmin.Services;
 
 namespace WahooFitToGarmin.Controllers
@@ -27,6 +25,13 @@ namespace WahooFitToGarmin.Controllers
             return challenge;
         }
 
-        
+        [HttpPost]
+        public ActionResult GetNotification([FromBody] string dataReceive)
+        {
+            _logger.Log(LogLevel.Information, $"data received : {dataReceive}");
+            return Ok();
+        }
+
+
     }
 }

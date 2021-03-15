@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace WahooFitToGarmin.Controllers
 {
@@ -9,17 +10,22 @@ namespace WahooFitToGarmin.Controllers
     public class UploadController : Controller
     {
         private readonly ILogger<UploadController> _logger;
+        private readonly IOptionsMonitor<DropboxSettings> _dropboxSettings;
 
-        public UploadController(ILogger<UploadController> logger)
+        public UploadController(ILogger<UploadController> logger, IOptionsMonitor<DropboxSettings> dropboxSettings)
         {
             _logger = logger;
+            _dropboxSettings = dropboxSettings;
+            _logger.Log(LogLevel.Information, $"DropboxAppName: {_dropboxSettings.CurrentValue.DropboxAppName}   DropboxAppToken:{_dropboxSettings.CurrentValue.DropboxAppToken}");
         }
 
         [HttpGet]
-        public ActionResult<string> Get()
+        public ActionResult<string> Get(string challenge)
         {
-            var rng = new Random();
-            return $"Coucou {rng.Next(int.MinValue, int.MaxValue)}";
+            _logger.Log(LogLevel.Information,$"challenge received : {challenge}");
+            return challenge;
         }
+
+        
     }
 }

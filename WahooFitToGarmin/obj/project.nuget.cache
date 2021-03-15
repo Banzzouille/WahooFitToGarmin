@@ -1,15 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "FfMXgVAZPJguLrIVqsSZDaUdK52rG29hHGEXVvrFqn3QAdYQ1ddnaIt9VzaLkyYpZAPrYntF8nqj4Wk7+Zdnhg==",
+  "dgSpecHash": "UAYdaviaJuEJSxpJQn81tYVrfx2cdvsyEZI+sstP1jqNsAvlWf8L7NwKiwVWXHzhgUutg7V/mYsuKYitjStnuQ==",
   "success": true,
   "projectFilePath": "C:\\_SC\\WahooFitToGarmin\\WahooFitToGarmin\\WahooFitToGarmin.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Florian-Adm\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
-    "C:\\Users\\Florian-Adm\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
-    "C:\\Users\\Florian-Adm\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
-    "C:\\Users\\Florian-Adm\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
-    "C:\\Users\\Florian-Adm\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
-    "C:\\Users\\Florian-Adm\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+    "C:\\Users\\Florian-Adm\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.13\\microsoft.visualstudio.azure.containers.tools.targets.1.10.13.nupkg.sha512"
   ],
   "logs": []
 }

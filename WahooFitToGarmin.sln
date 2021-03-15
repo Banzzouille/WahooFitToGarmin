@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.31025.194
+VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WahooFitToGarmin", "WahooFitToGarmin\WahooFitToGarmin.csproj", "{42C559C2-4B4F-4AD3-9531-03CC78670AC9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WahooFitToGarmin", "WahooFitToGarmin\WahooFitToGarmin.csproj", "{FD78B1EF-3542-4245-826E-4EB27B69B4A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{42C559C2-4B4F-4AD3-9531-03CC78670AC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42C559C2-4B4F-4AD3-9531-03CC78670AC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42C559C2-4B4F-4AD3-9531-03CC78670AC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42C559C2-4B4F-4AD3-9531-03CC78670AC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD78B1EF-3542-4245-826E-4EB27B69B4A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD78B1EF-3542-4245-826E-4EB27B69B4A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD78B1EF-3542-4245-826E-4EB27B69B4A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD78B1EF-3542-4245-826E-4EB27B69B4A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {DA830F2F-0C88-427B-9E29-13291381FBEA}
+		SolutionGuid = {18362127-161A-4F8F-8853-EBF48D39CE78}
 	EndGlobalSection
 EndGlobal

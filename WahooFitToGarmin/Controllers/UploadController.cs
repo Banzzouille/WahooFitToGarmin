@@ -2,6 +2,7 @@
 using System;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WahooFitToGarmin.Services;
 
 namespace WahooFitToGarmin.Controllers
 {
@@ -10,13 +11,13 @@ namespace WahooFitToGarmin.Controllers
     public class UploadController : Controller
     {
         private readonly ILogger<UploadController> _logger;
-        private readonly IOptionsMonitor<DropboxSettings> _dropboxSettings;
+        private readonly IDropboxSettingsService _dropboxSettingsService;
 
-        public UploadController(ILogger<UploadController> logger, IOptionsMonitor<DropboxSettings> dropboxSettings)
+        public UploadController(ILogger<UploadController> logger, IDropboxSettingsService dropboxSettingsServiceService)
         {
             _logger = logger;
-            _dropboxSettings = dropboxSettings;
-            _logger.Log(LogLevel.Information, $"DropboxAppName: {_dropboxSettings.CurrentValue.DropboxAppName}   DropboxAppToken:{_dropboxSettings.CurrentValue.DropboxAppToken}");
+            _dropboxSettingsService = dropboxSettingsServiceService;
+            _logger.Log(LogLevel.Information, $"DropboxAppName: {_dropboxSettingsService.GetDropboxAppName()}   DropboxAppToken:{_dropboxSettingsService.GetDropboxAppToken()}");
         }
 
         [HttpGet]

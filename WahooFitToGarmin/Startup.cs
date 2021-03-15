@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WahooFitToGarmin.Services;
 
 namespace WahooFitToGarmin
 {
@@ -26,7 +27,7 @@ namespace WahooFitToGarmin
         {
 
             services.AddControllers();
-            services.Configure<DropboxSettings>(Configuration.GetSection(DropboxSettings.SETTINGS_NAME));
+            services.AddSingleton<IDropboxSettingsService, DropboxSettingsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json.Linq;
 using WahooFitToGarmin.Services;
 using ActionResult = Microsoft.AspNetCore.Mvc.ActionResult;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
@@ -25,17 +26,17 @@ namespace WahooFitToGarmin.Controllers
         {
             _logger = logger;
             _dropboxSettingsService = dropboxSettingsServiceService;
-            _logger.LogInformation($"DropboxAppName: {_dropboxSettingsService.GetDropboxAppName()}");
-            _logger.LogInformation($"DropboxAppToken:{_dropboxSettingsService.GetDropboxAppToken()}");
-            _logger.LogInformation($"DropboxAppSecret:{_dropboxSettingsService.GetDropboxAppSecret()}");
+            _logger.LogInformation($"{DateTime.Now} ==> DropboxAppName: {_dropboxSettingsService.GetDropboxAppName()}");
+            _logger.LogInformation($"{DateTime.Now} ==> DropboxAppToken:{_dropboxSettingsService.GetDropboxAppToken()}");
+            _logger.LogInformation($"{DateTime.Now} ==> DropboxAppSecret:{_dropboxSettingsService.GetDropboxAppSecret()}");
             _logger.LogInformation($"========================================================");
         }
 
         [Microsoft.AspNetCore.Mvc.HttpGet]
         public ActionResult Verify(string challenge)
         {
-            _logger.LogInformation($"Enter Verify GET method");
-            _logger.LogInformation($"challenge received : {challenge}");
+            _logger.LogInformation($"{DateTime.Now} ==> Enter Verify GET method");
+            _logger.LogInformation($"{DateTime.Now} ==> challenge received : {challenge}");
             _logger.LogInformation($"========================================================");
             return Content(challenge);
         }
@@ -50,7 +51,7 @@ namespace WahooFitToGarmin.Controllers
             // Get the request signature
             StringValues signatureHeader;
             Request.Headers.TryGetValue("X-Dropbox-Signature", out signatureHeader);
-            _logger.LogInformation($"headerValueResult: {signatureHeader}");
+            _logger.LogInformation($"{DateTime.Now} ==> headerValueResult: {signatureHeader}");
             if (!signatureHeader.Any())
                 return Forbid();
 
@@ -58,12 +59,8 @@ namespace WahooFitToGarmin.Controllers
             string signature = signatureHeader.FirstOrDefault();
 
             // Extract the raw body of the request
-            string body = null;
-            using (StreamReader reader = new StreamReader(Request.Body))
-            {
-                _logger.LogInformation($"dataReceived: {await reader.ReadToEndAsync()}");
-                body = await reader.ReadToEndAsync();
-            }
+            string body = await new StreamReader(ControllerContext.HttpContext.Request.Body).ReadToEndAsync();
+            _logger.LogInformation($"{DateTime.Now} ==> dataReceived: {body}");
 
             // Check that the signature is good
             string appSecret = _dropboxSettingsService.GetDropboxAppSecret();

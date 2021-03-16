@@ -13,6 +13,11 @@ namespace WahooFitToGarmin.Services
         {
             return Environment.GetEnvironmentVariable("DropboxAppToken");
         }
+
+        public string GetDropboxAppSecret()
+        {
+            return Environment.GetEnvironmentVariable("DropboxAppSecret");
+        }
     }
 
 }

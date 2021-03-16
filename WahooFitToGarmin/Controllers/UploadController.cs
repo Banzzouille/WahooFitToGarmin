@@ -25,30 +25,33 @@ namespace WahooFitToGarmin.Controllers
         {
             _logger = logger;
             _dropboxSettingsService = dropboxSettingsServiceService;
-            _logger.Log(LogLevel.Information, $"DropboxAppName: {_dropboxSettingsService.GetDropboxAppName()}   DropboxAppToken:{_dropboxSettingsService.GetDropboxAppToken()}");
+            _logger.LogInformation($"DropboxAppName: {_dropboxSettingsService.GetDropboxAppName()}");
+            _logger.LogInformation($"DropboxAppToken:{_dropboxSettingsService.GetDropboxAppToken()}");
+            _logger.LogInformation($"DropboxAppSecret:{_dropboxSettingsService.GetDropboxAppSecret()}");
+            _logger.LogInformation($"========================================================");
         }
 
         [Microsoft.AspNetCore.Mvc.HttpGet]
         public ActionResult Verify(string challenge)
         {
-            _logger.Log(LogLevel.Information, $"Enter Verify GET method");
-            _logger.Log(LogLevel.Information,$"challenge received : {challenge}");
-            _logger.Log(LogLevel.Information, $"========================================================");
+            _logger.LogInformation($"Enter Verify GET method");
+            _logger.LogInformation($"challenge received : {challenge}");
+            _logger.LogInformation($"========================================================");
             return Content(challenge);
         }
 
         [Microsoft.AspNetCore.Mvc.HttpPost]
         public async Task<ActionResult> GetNotification()
         {
-            _logger.Log(LogLevel.Information, $"Enter GetNotification POST method");
+            _logger.LogInformation($"Enter GetNotification POST method");
             // Receive a list of changed user IDs from Dropbox and process each.
 
             // Make sure this is a valid request from Dropbox
             // Get the request signature
             StringValues signatureHeader;
             Request.Headers.TryGetValue("X-Dropbox-Signature", out signatureHeader);
-            _logger.Log(LogLevel.Information, $"headerValueResult: {signatureHeader}");
-            if ( !signatureHeader.Any())
+            _logger.LogInformation($"headerValueResult: {signatureHeader}");
+            if (!signatureHeader.Any())
                 return Forbid();
 
             // Get the signature value
@@ -58,7 +61,7 @@ namespace WahooFitToGarmin.Controllers
             string body = null;
             using (StreamReader reader = new StreamReader(Request.Body))
             {
-                _logger.Log(LogLevel.Information, $"dataReceived: {await reader.ReadToEndAsync()}");
+                _logger.LogInformation($"dataReceived: {await reader.ReadToEndAsync()}");
                 body = await reader.ReadToEndAsync();
             }
 

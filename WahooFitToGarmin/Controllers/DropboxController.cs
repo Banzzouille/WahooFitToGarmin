@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -6,7 +7,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Dropbox.Api;
+using GarminConnectClient.Lib;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json.Linq;
@@ -17,13 +20,13 @@ using Controller = Microsoft.AspNetCore.Mvc.Controller;
 namespace WahooFitToGarmin.Controllers
 {
     [ApiController]
-    [Microsoft.AspNetCore.Mvc.Route("[controller]")]
-    public class UploadController : Controller
+    [Route("[controller]")]
+    public class DropboxController : Controller
     {
-        private readonly ILogger<UploadController> _logger;
+        private readonly ILogger<DropboxController> _logger;
         private readonly IDropboxSettingsService _dropboxSettingsService;
 
-        public UploadController(ILogger<UploadController> logger, IDropboxSettingsService dropboxSettingsServiceService)
+        public DropboxController(ILogger<DropboxController> logger, IDropboxSettingsService dropboxSettingsServiceService)
         {
             _logger = logger;
             _dropboxSettingsService = dropboxSettingsServiceService;
@@ -33,7 +36,7 @@ namespace WahooFitToGarmin.Controllers
             _logger.LogInformation($"========================================================");
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpGet]
+        [HttpGet]
         public ActionResult Verify(string challenge)
         {
             _logger.LogInformation($"{DateTime.Now} ==> Enter Verify GET method");
@@ -42,7 +45,7 @@ namespace WahooFitToGarmin.Controllers
             return Content(challenge);
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpPost]
+        [HttpPost]
         public async Task<ActionResult> GetNotification()
         {
             _logger.LogInformation($"Enter GetNotification POST method");
@@ -71,13 +74,12 @@ namespace WahooFitToGarmin.Controllers
                     return Forbid();
             }
 
-            await ListRootFolder(GetClient());
+            await DownLoadFitFiles(GetDropboxClient());
 
             return Ok();
-
         }
 
-        async Task ListRootFolder(DropboxClient dbx)
+        async Task DownLoadFitFiles(DropboxClient dbx)
         {
             var list = await dbx.Files.ListFolderAsync(string.Empty, true, true);
 
@@ -111,7 +113,7 @@ namespace WahooFitToGarmin.Controllers
             }
         }
 
-        private DropboxClient GetClient()
+        private DropboxClient GetDropboxClient()
         {
             var currentClient = new DropboxClient(
                 _dropboxSettingsService.GetDropboxAppToken(), new DropboxClientConfig(_dropboxSettingsService.GetDropboxAppName()));
@@ -137,7 +139,6 @@ namespace WahooFitToGarmin.Controllers
             // Return the hexadecimal string. 
             return stringBuilder.ToString();
         }
-
         private bool VerifySha256Hash(HMACSHA256 sha256Hash, string input, string hash)
         {
             // Hash the input. 
@@ -149,5 +150,6 @@ namespace WahooFitToGarmin.Controllers
             return false;
         }
 
+        
     }
 }

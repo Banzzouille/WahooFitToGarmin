@@ -30,7 +30,14 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/upload?challenge=coucou-toi",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/dropbox?challenge=coucou-toi",
+      "environmentVariables": {
+        "DropboxAppSecret": "mfyq3tomskzs1cz",
+        "DropboxAppName": "WahooFitToGarmin",
+        "DropboxAppToken": "JHmzOrHRq_4AAAAAAAAAAVuowk3S2S7TPfGwq4f0xqq7KRgKkvWAEMm7ti7BasrI",
+        "GarminConnectPassword": "U-xd%G:bK.:vos:V_jx4",
+        "GarminConnectUserName": "djflolecrapo@hotmail.com"
+      },
       "publishAllPorts": true
     }
   }

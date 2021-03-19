@@ -7,8 +7,11 @@
 
   <ItemGroup>
     <PackageReference Include="Dropbox.Api" Version="6.1.0" />
-    <PackageReference Include="GarminConnectClientNet" Version="1.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GarminConnectClient.Lib\GarminConnectClient.Lib.csproj" />
   </ItemGroup>
 
 </Project>

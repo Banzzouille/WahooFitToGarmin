@@ -5,6 +5,5 @@
         string GetDropboxAppName();
         string GetDropboxAppToken();
         string GetDropboxAppSecret();
-
     }
 }

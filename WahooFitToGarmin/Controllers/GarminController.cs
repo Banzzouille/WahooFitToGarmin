@@ -18,7 +18,7 @@ namespace WahooFitToGarmin.Controllers
         private readonly IGarminConnectSettingsService _garminConnectSettingsService;
         private readonly ILogger<GarminController> _logger;
 
-        public GarminController( IGarminConnectSettingsService garminConnectSettingsService, ILogger<GarminController> logger)
+        public GarminController(IGarminConnectSettingsService garminConnectSettingsService, ILogger<GarminController> logger)
         {
             _garminConnectSettingsService = garminConnectSettingsService;
             _logger = logger;
@@ -42,22 +42,20 @@ namespace WahooFitToGarmin.Controllers
             var fitFile = allFitFiles.FirstOrDefault();
             if (fitFile == null) return Ok();
 
-            bool resultGarmin;
-            var res = Run(Path.Combine(GarminUploaderFolderPath, "cli.py"), $"-u {_garminConnectSettingsService.GetGarminConnectUserName()} -p {_garminConnectSettingsService.GetGarminConnectPassword()} \"{fitFile}\"",out resultGarmin);
-            
+            var res = Run(Path.Combine(GarminUploaderFolderPath, "cli.py"), $"-u {_garminConnectSettingsService.GetGarminConnectUserName()} -p {_garminConnectSettingsService.GetGarminConnectPassword()} \"{fitFile}\"");
+
             Console.WriteLine(res);
             _logger.LogInformation($"{DateTime.Now} ==> Garmin_uploader execution result : {res}");
 
-            if(resultGarmin)
+            if (res.Contains("Uploaded activity") || res.Contains("Activity already uploaded"))
                 System.IO.File.Delete(fitFile);
 
             _logger.LogInformation("-------------------------------------------------------------------------------");
             return Ok();
         }
 
-        public string Run(string cmd, string args, out bool resultGarmin)
+        public string Run(string cmd, string args)
         {
-            resultGarmin = false;
             ProcessStartInfo start = new ProcessStartInfo();
             start.FileName = "python3";
             start.Arguments = $"{cmd} {args}";
@@ -70,10 +68,8 @@ namespace WahooFitToGarmin.Controllers
             string stderr = process.StandardError.ReadToEnd(); // Here are the exceptions from our Python script
             string result = reader.ReadToEnd(); // Here is the result of StdOut(for example: print "test")
 
-            if (stderr.Contains("Uploaded activity")) 
-                resultGarmin = true;
 
-            return stderr +" "+result;
+            return stderr + " " + result;
 
         }
 

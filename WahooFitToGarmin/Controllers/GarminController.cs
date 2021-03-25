@@ -29,7 +29,9 @@ namespace WahooFitToGarmin.Controllers
         {
             _logger.LogInformation($"{DateTime.Now} ==> Enter SendFile GET method");
             _logger.LogInformation($"========================================================");
-            
+            //usr/local/lib/python3.7/dist-packages/garmin-uploader
+
+            var dirExist = Directory.Exists("/usr/local/lib/python3.7/dist-packages/garmin_uploader/");
 
             Task.Delay(Timeout).Wait();
             System.Console.WriteLine("-------------------------------------------------------------------------------");

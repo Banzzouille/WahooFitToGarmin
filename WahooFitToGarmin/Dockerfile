@@ -1,7 +1,7 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
-RUN apt update && apt install python3.5 -y && apt install python3-pip -y && apt clean
+RUN apt update && apt install python3.7 -y && apt install python3-pip -y && apt clean
 RUN pip3 install --no-cache-dir garmin-uploader
        
 WORKDIR /app

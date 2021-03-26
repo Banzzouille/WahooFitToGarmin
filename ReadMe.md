@@ -19,7 +19,7 @@ You need to synchronize your Wahhoo compagnon app with your dropbox account. Iy 
 
 Then, go to your Wahoo app -> Profile -> Connected Apps -> find dropbox entry in the list -> connect the app to dropbox with your account
 
-![DropBox-Wahoo-App.jpg](/doc/DropBox-Wahoo-App.jpg)
+![DropBox-Wahoo-App.jpg](https://i.postimg.cc/mknWL7pb/Drop-Box-Wahoo-App.jpg)
 
 Here, when you will finish your next activty, a fit file will be directly send to your dropbox cloud account.
 
@@ -51,28 +51,28 @@ Click on Console App link
 
 Create your own app.
 
-![Dropbox-Create-App.jpg](/doc/Dropbox-Create-App.jpg)
+![Dropbox-Create-App.jpg](https://i.postimg.cc/4xCjWfrF/Dropbox-Create-App.png)
 
 In the permissions section, make your file readable and writable.
-![Dropbox-read-write.jpg](/doc/Dropbox-read-write.jpg)
+![Dropbox-read-write.jpg](https://i.postimg.cc/FzMCCpnJ/Dropbox-read-write.jpg)
 
 Then copy your app key secret and generated token for futur uses.
-![Dropbox-App-key-secret.jpg](/doc/Dropbox-App-key-secret.jpg)
+![Dropbox-App-key-secret.jpg](https://i.postimg.cc/NFXv053m/Dropbox-App-key-secret.jpg)
 
 Create a webhook to ping you image automatically when a new file arrive on your dropbox account
 The end of this url has to be __/dropbox__
-![Dropbox-webhook.jpg](/doc/Dropbox-webhook.jpg)
+![Dropbox-webhook.jpg](https://i.postimg.cc/tgvKt3yF/Dropbox-webhook.jpg)
 
 ## 4. Automate the upload file to Garmin Connect
 
 Today, I use tool to check and monitor my website named Ciao : (https://brotandgames.com/ciao/)[https://brotandgames.com/ciao/]
 
 I juste add a new entry like this 
-![ciao-config.jpg](/doc/ciao-config.jpg)
+![ciao-config.jpg](https://i.postimg.cc/7Y1jQ8wH/ciao-config.jpg)
 
 You have to ping an url finishing by __/garmin__ to upload one by one the previously downloaded fit files.
 In this example, i do this every 5 minutes
 
-With this installation, you will benow able to synchronize your Wahoo activities directly to Garmin Connect.
+With this installation, you will be now able to synchronize your Wahoo activities directly to Garmin Connect.
 
 Thanks to [https://github.com/La0/garmin-uploader](https://github.com/La0/garmin-uploader) for the job.

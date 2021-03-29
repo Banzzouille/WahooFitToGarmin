@@ -37,7 +37,7 @@ docker run -d --name='wahoo-fit-to-garmin'
                 -e 'DropboxAppSecret'=YourAppSecret' 
                 -e 'GarminConnectUserName'='YourUserName' 
                 -e 'GarminConnectPassword'='YourPassword' 
-                'banzzouille/wahoo-fit-to-garmin' 
+                'banzzouille/wahoo-fit-to-garmin'
 ```
 It's your reponsability to make it accessible from the internet because dropbox will ping your docker image when a new file will appear.
 When a new fit file will be drop in the "WahooFitness" folder, the docker image will download all the fit files found in this folder, and delete it.

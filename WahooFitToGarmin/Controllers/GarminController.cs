@@ -14,7 +14,6 @@ namespace WahooFitToGarmin.Controllers
     {
         private const string GarminUploaderFolderPath = "/usr/local/lib/python3.7/dist-packages/garmin_uploader/";
         private const string ActivityFolderPath = "Activities";
-        private const int Timeout = 2000;
         private readonly IGarminConnectSettingsService _garminConnectSettingsService;
         private readonly ILogger<GarminController> _logger;
 
@@ -35,6 +34,7 @@ namespace WahooFitToGarmin.Controllers
             {
                 _logger.LogInformation($"{DateTime.Now} ==> Garmin_uploader folder not found");
                 _logger.LogInformation($"========================================================");
+                return Ok();
             }
 
             var allFitFiles = Directory.GetFiles(ActivityFolderPath, "*.fit");
@@ -42,7 +42,7 @@ namespace WahooFitToGarmin.Controllers
             var fitFile = allFitFiles.FirstOrDefault();
             if (fitFile == null) return Ok();
 
-            var res = Run(Path.Combine(GarminUploaderFolderPath, "cli.py"), $"-u {_garminConnectSettingsService.GetGarminConnectUserName()} -p {_garminConnectSettingsService.GetGarminConnectPassword()} \"{fitFile}\"");
+            var res = Run(Path.Combine(GarminUploaderFolderPath, "cli.py"), $"-u {_garminConnectSettingsService.GetGarminConnectUserName()} -p {_garminConnectSettingsService.GetGarminConnectPassword()} {fitFile}");
 
             Console.WriteLine(res);
             _logger.LogInformation($"{DateTime.Now} ==> Garmin_uploader execution result : {res}");

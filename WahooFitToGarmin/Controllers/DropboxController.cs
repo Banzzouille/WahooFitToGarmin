@@ -99,7 +99,7 @@ namespace WahooFitToGarmin.Controllers
 
                         _logger.LogInformation($"{DateTime.Now} ==> downloading file: {file.PathLower}");
                         var fileContent = await response.GetContentAsByteArrayAsync();
-                        await System.IO.File.WriteAllBytesAsync(Path.Combine("Activities", file.Name), fileContent);
+                        await System.IO.File.WriteAllBytesAsync(Path.Combine("Activities", file.Name.Replace(" ","-")), fileContent);
 
                         _logger.LogInformation($"{DateTime.Now} ==> deleting file: {file.PathLower}");
                         await dbx.Files.DeleteV2Async(file.PathLower);

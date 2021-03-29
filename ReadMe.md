@@ -54,20 +54,23 @@ Create your own app.
 ![Dropbox-Create-App.jpg](https://i.postimg.cc/4xCjWfrF/Dropbox-Create-App.png)
 
 In the permissions section, make your file readable and writable.
+
 ![Dropbox-read-write.jpg](https://i.postimg.cc/FzMCCpnJ/Dropbox-read-write.jpg)
 
 Then copy your app key secret and generated token for futur uses.
-![Dropbox-App-key-secret.jpg](https://i.postimg.cc/NFXv053m/Dropbox-App-key-secret.jpg)
+
+![Dropbox-App-key-secret.jpg](https://i.postimg.cc/4NvL0PXz/Dropbox-App-key-secret.jpg)
 
 Create a webhook to ping you image automatically when a new file arrive on your dropbox account
 The end of this url has to be __/dropbox__
+
 ![Dropbox-webhook.jpg](https://i.postimg.cc/tgvKt3yF/Dropbox-webhook.jpg)
 
 ## 4. Automate the upload file to Garmin Connect
 
 Today, I use tool to check and monitor my website named Ciao : (https://brotandgames.com/ciao/)[https://brotandgames.com/ciao/]
 
-I juste add a new entry like this 
+I just add a new entry like this 
 ![ciao-config.jpg](https://i.postimg.cc/7Y1jQ8wH/ciao-config.jpg)
 
 You have to ping an url finishing by __/garmin__ to upload one by one the previously downloaded fit files.

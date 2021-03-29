@@ -28,11 +28,17 @@ namespace WahooFitToGarmin.Controllers
         {
             _logger.LogInformation($"{DateTime.Now} ==> Enter SendFile GET method");
             _logger.LogInformation($"========================================================");
-
-            var dirExist = Directory.Exists(GarminUploaderFolderPath);
-            if (!dirExist)
+            
+            if (!Directory.Exists(GarminUploaderFolderPath))
             {
                 _logger.LogInformation($"{DateTime.Now} ==> Garmin_uploader folder not found");
+                _logger.LogInformation($"========================================================");
+                return Ok();
+            }
+
+            if (!Directory.Exists(ActivityFolderPath))
+            {
+                _logger.LogInformation($"{DateTime.Now} ==> Activity folder not found");
                 _logger.LogInformation($"========================================================");
                 return Ok();
             }
@@ -41,6 +47,7 @@ namespace WahooFitToGarmin.Controllers
 
             var fitFile = allFitFiles.FirstOrDefault();
             if (fitFile == null) return Ok();
+            _logger.LogInformation($"{DateTime.Now} ==> Working on this file : {fitFile}");
 
             var res = Run(Path.Combine(GarminUploaderFolderPath, "cli.py"), $"-u {_garminConnectSettingsService.GetGarminConnectUserName()} -p {_garminConnectSettingsService.GetGarminConnectPassword()} {fitFile}");
 

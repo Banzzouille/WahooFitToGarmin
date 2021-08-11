@@ -49,7 +49,7 @@ namespace WahooFitToGarmin.Controllers
             if (fitFile == null) return Ok();
             _logger.LogInformation($"{DateTime.Now} ==> Working on this file : {fitFile}");
 
-            var res = Run(Path.Combine(GarminUploaderFolderPath, "cli.py"), $"-u {_garminConnectSettingsService.GetGarminConnectUserName()} -p {_garminConnectSettingsService.GetGarminConnectPassword()} {fitFile}");
+            var res = Run(Path.Combine(GarminUploaderFolderPath, "cli.py"), $"-u {_garminConnectSettingsService.GetGarminConnectUserName()} -p {_garminConnectSettingsService.GetGarminConnectPassword()} {fitFile} -v 1");
 
             Console.WriteLine(res);
             _logger.LogInformation($"{DateTime.Now} ==> Garmin_uploader execution result : {res}");

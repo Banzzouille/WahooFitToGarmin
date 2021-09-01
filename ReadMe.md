@@ -25,7 +25,7 @@ Here, when you finish your next activty, a fit file will be directly send to you
 
 ## 2. Install your docker image
 
-The docker image is available at this place : [https://hub.docker.com/repository/docker/banzzouille/wahoo-fit-to-garmin](https://hub.docker.com/repository/docker/banzzouille/wahoo-fit-to-garmin)
+The docker image is available at this place : [https://hub.docker.com/r/banzzouille/wahoo-fit-to-garmin](https://hub.docker.com/r/banzzouille/wahoo-fit-to-garmin)
 
 These are the parameters to use it.
 it exposes the port 80.

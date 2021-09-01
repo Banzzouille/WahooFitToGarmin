@@ -68,7 +68,7 @@ The end of this url has to be __/dropbox__
 
 ## 4. Automate the upload file to Garmin Connect
 
-Today, I use tool to check and monitor my website named Ciao : (https://brotandgames.com/ciao/)[https://brotandgames.com/ciao/]
+Today, I use tool to check and monitor my website named Ciao : [https://brotandgames.com/ciao/](https://brotandgames.com/ciao/)
 
 I just add a new entry like this 
 ![ciao-config.jpg](https://i.postimg.cc/7Y1jQ8wH/ciao-config.jpg)

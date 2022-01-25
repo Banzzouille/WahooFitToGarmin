@@ -143,6 +143,7 @@ namespace WahooFitToGarmin.Helpers
 			}
 			catch (FlurlHttpException e)
 			{
+				Debug.WriteLine(e, "Second auth step failed.");
                 return "Second auth step failed.";
 			}
 
@@ -157,6 +158,7 @@ namespace WahooFitToGarmin.Helpers
 			}
 			catch (FlurlHttpException e)
 			{
+				Debug.WriteLine(e, "Login check failed.");
                 return "Login check failed.";
 			}
 

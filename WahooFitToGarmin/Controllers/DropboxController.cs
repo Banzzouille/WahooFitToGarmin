@@ -103,13 +103,14 @@ namespace WahooFitToGarmin.Controllers
 
                         _logger.LogInformation($"{DateTime.Now} ==> downloading file: {file.PathLower}");
                         var fileContent = await response.GetContentAsByteArrayAsync();
-                        await System.IO.File.WriteAllBytesAsync(Path.Combine("Activities", file.Name.Replace(" ","-")), fileContent);
+                        var finalFileName = file.Name.Replace(" ", "-");
+                        await System.IO.File.WriteAllBytesAsync(Path.Combine("Activities", finalFileName), fileContent);
 
                         _logger.LogInformation($"{DateTime.Now} ==> deleting file: {file.PathLower}");
-                        await dbx.Files.DeleteV2Async(file.PathLower);
+                        await dbx.Files.DeleteV2Async(finalFileName);
 
                         await _garminUploader.UploadAsync(_garminConnectSettingsService.GetGarminConnectUserName(),
-                            _garminConnectSettingsService.GetGarminConnectPassword(), Path.Combine("Activities", file.Name), _logger).ConfigureAwait(false);
+                            _garminConnectSettingsService.GetGarminConnectPassword(), Path.Combine("Activities", finalFileName), _logger).ConfigureAwait(false);
                     }
                 }
             }

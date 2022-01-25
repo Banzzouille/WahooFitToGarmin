@@ -18,13 +18,17 @@ namespace WahooFitToGarmin.Controllers
     [Route("[controller]")]
     public class DropboxController : Controller
     {
+        private readonly IGarminUploader _garminUploader;
         private readonly ILogger<DropboxController> _logger;
         private readonly IDropboxSettingsService _dropboxSettingsService;
+        private readonly IGarminConnectSettingsService _garminConnectSettingsService;
 
-        public DropboxController(ILogger<DropboxController> logger, IDropboxSettingsService dropboxSettingsServiceService)
+        public DropboxController(IGarminUploader garminUploader, IDropboxSettingsService dropboxSettingsServiceService, IGarminConnectSettingsService garminConnectSettingsService,ILogger<DropboxController> logger)
         {
+            _garminUploader = garminUploader;
             _logger = logger;
             _dropboxSettingsService = dropboxSettingsServiceService;
+            _garminConnectSettingsService = garminConnectSettingsService;
             _logger.LogInformation($"{DateTime.Now} ==> DropboxAppName: {_dropboxSettingsService.GetDropboxAppName()}");
             _logger.LogInformation($"{DateTime.Now} ==> DropboxAppToken:{_dropboxSettingsService.GetDropboxAppToken()}");
             _logger.LogInformation($"{DateTime.Now} ==> DropboxAppSecret:{_dropboxSettingsService.GetDropboxAppSecret()}");
@@ -103,6 +107,9 @@ namespace WahooFitToGarmin.Controllers
 
                         _logger.LogInformation($"{DateTime.Now} ==> deleting file: {file.PathLower}");
                         await dbx.Files.DeleteV2Async(file.PathLower);
+
+                        await _garminUploader.UploadAsync(_garminConnectSettingsService.GetGarminConnectUserName(),
+                            _garminConnectSettingsService.GetGarminConnectPassword(), Path.Combine("Activities", file.Name), _logger).ConfigureAwait(false);
                     }
                 }
             }

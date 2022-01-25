@@ -21,6 +21,7 @@ namespace WahooFitToGarmin
         {
 
             services.AddControllers();
+            services.AddSingleton<IGarminUploader, GarminUploader>();
             services.AddSingleton<IDropboxSettingsService, DropboxSettingsService>();
             services.AddSingleton<IGarminConnectSettingsService, GarminConnectSettingsService>();
         }

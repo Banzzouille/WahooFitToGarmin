@@ -1,11 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Dropbox.Api;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using WahooFitToGarmin.Services;
@@ -47,10 +49,6 @@ namespace WahooFitToGarmin.Controllers
         [HttpPost]
         public async Task<ActionResult> GetNotification()
         {
-            _logger.LogInformation($"Enter GetNotification POST method");
-            // Receive a list of changed user IDs from Dropbox and process each.
-
-            // Make sure this is a valid request from Dropbox
             // Get the request signature
             StringValues signatureHeader;
             Request.Headers.TryGetValue("X-Dropbox-Signature", out signatureHeader);
@@ -62,21 +60,26 @@ namespace WahooFitToGarmin.Controllers
             string signature = signatureHeader.FirstOrDefault();
 
             // Extract the raw body of the request
-            string body = await new StreamReader(ControllerContext.HttpContext.Request.Body).ReadToEndAsync();
-            _logger.LogInformation($"{DateTime.Now} ==> dataReceived: {body}");
+            string body = null;
+            using (StreamReader reader = new StreamReader(ControllerContext.HttpContext.Request.Body))
+            {
+                body = await reader.ReadToEndAsync();
+            }
 
             // Check that the signature is good
             string appSecret = _dropboxSettingsService.GetDropboxAppSecret();
             using (HMACSHA256 hmac = new HMACSHA256(Encoding.UTF8.GetBytes(appSecret)))
             {
                 if (!VerifySha256Hash(hmac, body, signature))
-                    return Forbid();
+                    return BadRequest();
             }
 
             await DownLoadFitFiles(GetDropboxClient());
 
+            // Return A-OK :)
             return Ok();
         }
+    
 
         async Task DownLoadFitFiles(DropboxClient dbx)
         {
@@ -95,19 +98,20 @@ namespace WahooFitToGarmin.Controllers
                     Console.WriteLine("F{0,8} {1}", file.AsFile.Size, file.Name);
                     using (var response = await dbx.Files.DownloadAsync(file.PathLower))
                     {
+                        var finalFileName = file.Name.Replace(" ", "-");
                         if (!System.IO.Directory.Exists("Activities"))
                             System.IO.Directory.CreateDirectory("Activities");
-
-                        if (!System.IO.File.Exists(Path.Combine("Activities", file.Name)))
-                            System.IO.File.Delete(Path.Combine("Activities", file.Name));
+                        
+                        if(Directory.GetFiles("Activities").FirstOrDefault(act=>act.Contains(finalFileName))!=null)
+                            continue;
 
                         _logger.LogInformation($"{DateTime.Now} ==> downloading file: {file.PathLower}");
+
                         var fileContent = await response.GetContentAsByteArrayAsync();
-                        var finalFileName = file.Name.Replace(" ", "-");
                         await System.IO.File.WriteAllBytesAsync(Path.Combine("Activities", finalFileName), fileContent);
 
                         _logger.LogInformation($"{DateTime.Now} ==> deleting file: {file.PathLower}");
-                        await dbx.Files.DeleteV2Async(finalFileName);
+                        await dbx.Files.DeleteV2Async(file.PathLower);
 
                         await _garminUploader.UploadAsync(_garminConnectSettingsService.GetGarminConnectUserName(),
                             _garminConnectSettingsService.GetGarminConnectPassword(), Path.Combine("Activities", finalFileName), _logger).ConfigureAwait(false);
@@ -123,6 +127,8 @@ namespace WahooFitToGarmin.Controllers
 
             return currentClient;
         }
+
+
         private string GetSha256Hash(HMACSHA256 sha256Hash, string input)
         {
             // Convert the input string to a byte array and compute the hash. 
@@ -142,6 +148,7 @@ namespace WahooFitToGarmin.Controllers
             // Return the hexadecimal string. 
             return stringBuilder.ToString();
         }
+
         private bool VerifySha256Hash(HMACSHA256 sha256Hash, string input, string hash)
         {
             // Hash the input. 
@@ -153,6 +160,6 @@ namespace WahooFitToGarmin.Controllers
             return false;
         }
 
-        
+
     }
 }

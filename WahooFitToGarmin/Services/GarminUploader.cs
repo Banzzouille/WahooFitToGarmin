@@ -35,6 +35,7 @@ namespace WahooFitToGarmin.Services
                                 if (message.Code == 202)
                                 {
                                     logger.LogInformation($"Activity already uploaded {result.FileName}");
+                                    System.IO.File.Delete(filePath);
                                 }
                                 else
                                 {

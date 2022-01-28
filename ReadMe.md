@@ -10,7 +10,7 @@ I didn't want to continue to synchronize manually once a week my activity betwee
 
 - I use auto export functionality to DropBox directly from Wahoo compagnon app
 - Declare an application on Dropbox developer site web
-- A scheduler to ping your docker container to upload activities to Garmin Connect
+- ~~A scheduler to ping your docker container to upload activities to Garmin Connect~~
 
 # Step by step Guide
 
@@ -66,7 +66,10 @@ The end of this url has to be __/dropbox__
 
 ![Dropbox-webhook.jpg](https://i.postimg.cc/tgvKt3yF/Dropbox-webhook.jpg)
 
-## 4. Automate the upload file to Garmin Connect
+## ~~4. Automate the upload file to Garmin Connect~~
+
+YOU DON'T NEED THIS ANYMORE !!!   
+(New fit file will be push to garmin connect directly after file download on dropbox notification)
 
 Today, I use tool to check and monitor my website named Ciao : [https://brotandgames.com/ciao/](https://brotandgames.com/ciao/)
 
@@ -78,4 +81,3 @@ In this example, i do this every 5 minutes
 
 With this installation, you will be now able to synchronize your Wahoo activities directly to Garmin Connect.
 
-Thanks to [https://github.com/La0/garmin-uploader](https://github.com/La0/garmin-uploader) for the job.
